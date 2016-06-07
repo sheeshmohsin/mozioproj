@@ -1,3 +1,49 @@
+============
+Installation
+============
+
+Run the following commands for installing system level required packages::
+
+    $ sudo apt-get update  # system update
+    
+    $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -  # Postgres repo
+    
+    $ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" >> /etc/apt/sources.list.d/postgresql.list'
+    
+    $ sudo apt-get update  # system update
+    
+    $ sudo apt-get install $(cat packages.txt)   # Install required global packages using apt-get
+    
+    $ sudo pip install -r requirements.txt   # Install packages using pip
+    
+    # Setting up postgres db
+    
+    $ sudo su postgres
+    
+    $ createuser -U postgres geouser -S -D -R  # Create user 'geouser'
+    
+    $ psql -U postgres -c "alter role geouser with password 'geopassword';"    # # Change geouser's password to 'geopassword'
+    
+    $ createdb geology  # Create Database
+    
+    $ psql geology # Use Database
+    
+    # Add spatial extensions, exit, and exit postgres user.
+    
+    =# CREATE EXTENSION postgis;
+    
+    =# \q
+    
+    $ exit
+    
+    python manage.py migrate
+    
+    python manage.py makemigrations units
+    
+    python manage.py migrate units
+    
+    python manage.py runserver
+
 ========================
 Interacting With The API
 ========================
