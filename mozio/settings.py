@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.gis',
+    'tastypie',
+    'tastypie_swagger',
+    'units',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -76,11 +81,22 @@ WSGI_APPLICATION = 'mozio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'geology',
+        'USER': 'geouser',
+        'PASSWORD': 'geopassword',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
+# Caching
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': 'localhost:6379',
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
