@@ -1,6 +1,6 @@
 python-dev
 libxml2-dev
-libxlst1-dev
+libxslt1-dev
 redis-server
 python-software-properties
 postgresql-9.3
