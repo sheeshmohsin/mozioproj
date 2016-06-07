@@ -647,4 +647,4 @@ Returns::
 We get back the ``GeoNote`` resource defining Golden Gate Park.
 Awesome!
 
-Not Satisfied yet? Go to this `link <http://localhost:8080/>`_ for more API details.
+Not Satisfied yet? Go to localhost homepage for more API details.
