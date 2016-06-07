@@ -24,12 +24,12 @@ v1_api.register(ServiceAreasResource())
 
 urlpatterns = [
     url(r'',
-      include('tastypie_swagger.urls', namespace='myapi_tastypie_swagger'),
-      kwargs={
-          "tastypie_api_module":v1_api,
-          "namespace":"myapi_tastypie_swagger",
-          "version": "0.1"}
-    ),
+        include('tastypie_swagger.urls', namespace='myapi_tastypie_swagger'),
+        kwargs={
+            "tastypie_api_module": v1_api,
+            "namespace": "myapi_tastypie_swagger",
+            "version": "0.1"}
+        ),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(v1_api.urls)),
 ]

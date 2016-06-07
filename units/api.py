@@ -5,14 +5,16 @@ from tastypie.authorization import Authorization
 from tastypie.cache import SimpleCache
 from tastypie import fields
 
+
 class ProviderResource(ModelResource):
 
-	class Meta:
-		queryset = Provider.objects.all()
-		resource_name = "provider"
-		authorization = Authorization()
-		always_return_data = True
-		cache = SimpleCache(timeout=10)
+    class Meta:
+        queryset = Provider.objects.all()
+        resource_name = "provider"
+        authorization = Authorization()
+        always_return_data = True
+        cache = SimpleCache(timeout=10)
+
 
 class ServiceAreasResource(GeoModelResource):
     # Maps `ServiceAreas.provider` to a Tastypie `ForeignKey` field named `provider`,
@@ -20,20 +22,20 @@ class ServiceAreasResource(GeoModelResource):
     # 'provider' on the next line of code is the Tastypie field name, the 2nd
     # appearance tells the `ForeignKey` it maps to the `provider` attribute of
     # `ServiceAreas`. Field names and model attributes don't have to be the same.
-	provider = fields.ForeignKey(ProviderResource, 'provider')
+    provider = fields.ForeignKey(ProviderResource, 'provider')
 
-	class Meta:
-		queryset = ServiceAreas.objects.all()
-		resource_name = "service_areas"
-		excludes = ['id',]
-		authorization = Authorization()
-		always_return_data = True
-		cache = SimpleCache(timeout=10)
+    class Meta:
+        queryset = ServiceAreas.objects.all()
+        resource_name = "service_areas"
+        excludes = ['id']
+        authorization = Authorization()
+        always_return_data = True
+        cache = SimpleCache(timeout=10)
 
-		filtering = {
-			'geom': ALL,
-		}
+        filtering = {
+            'geom': ALL,
+        }
 
-	def dehydrate(self, bundle):
-		bundle.data['provider'] = bundle.obj.provider.name
-		return bundle
+    def dehydrate(self, bundle):
+        bundle.data['provider'] = bundle.obj.provider.name
+        return bundle

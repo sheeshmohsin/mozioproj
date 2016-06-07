@@ -8,6 +8,7 @@ from django.contrib.gis.db import models
 
 unit_srid = 4326
 
+
 class Provider(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=1024)
@@ -15,9 +16,10 @@ class Provider(models.Model):
     phone_number = models.CharField(max_length=10)
     language = models.CharField(max_length=10)
     currency = models.CharField(max_length=3)
-    
+
     def __unicode__(self):
         return self.name
+
 
 class ServiceAreas(models.Model):
     provider = models.ForeignKey(Provider)
